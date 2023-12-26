@@ -102,8 +102,8 @@ def centrality_scores(
             ax=ax,
             **kwargs,
         )
-        ax.set_title(str(g).replace("_", " ").capitalize())
-        ax.set_xlabel("value")
+        ax.set_xlabel(str(g).replace("_", " ").capitalize())
+        # ax.set_xlabel("value")
 
         ax.set_yticks([])
         ax.legend(**legend_kwargs)

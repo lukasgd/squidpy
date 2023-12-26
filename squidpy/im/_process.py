@@ -9,7 +9,7 @@ from scanpy import logging as logg
 from scipy.ndimage import gaussian_filter as scipy_gf
 import dask.array as da
 
-from dask_image.ndfilters import gaussian_filter as dask_gf
+# from dask_image.ndfilters import gaussian_filter as dask_gf
 
 from squidpy._docs import d, inject_docs
 from squidpy._utils import NDArrayA
@@ -106,7 +106,8 @@ def process(
         if chunks is not None:
             # dask_image already handles map_overlap
             chunks_, chunks = chunks, None
-            callback = lambda arr, **kwargs: dask_gf(da.asarray(arr).rechunk(chunks_), **kwargs)  # noqa: E731
+            raise RuntimeError("dask_image is not supported due to compatibility issues")
+            # callback = lambda arr, **kwargs: dask_gf(da.asarray(arr).rechunk(chunks_), **kwargs)  # noqa: E731
         else:
             callback = scipy_gf
     elif method == Processing.GRAY:  # type: ignore[comparison-overlap]

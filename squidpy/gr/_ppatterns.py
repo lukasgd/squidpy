@@ -355,13 +355,13 @@ def co_occurrence(
     n_obs = spatial.shape[0]
     if n_splits is None:
         size_arr = (n_obs**2 * spatial.itemsize) / 1024 / 1024  # calc expected mem usage
-        if size_arr > 2000:
+        if size_arr > 100*2000:
             n_splits = 1
-            while 2048 < (n_obs / n_splits):
-                n_splits += 1
+            # while 100*2048 < (n_obs / n_splits):
+            #     n_splits += 1
             logg.warning(
-                f"`n_splits` was automatically set to `{n_splits}` to "
-                f"prevent `{n_obs}x{n_obs}` distance matrix from being created"
+                f"`n_splits` was automatically set to `{n_splits}` despite "
+                f"creating `{n_obs}x{n_obs}` distance matrix"
             )
         else:
             n_splits = 1
